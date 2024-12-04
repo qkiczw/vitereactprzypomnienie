@@ -1,0 +1,18 @@
+.postContainer {
+  background-color: crimson;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  max-width: 310px;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+}
+.author {
+  font-size: 1.25rem;
+  color: #fff;
+}
+.post {
+  color: #e2e2e2;
+  font-size: 1.5rem;
+  font-weight: 100;
+  font-style: italic;
+}

@@ -1,11 +1,12 @@
-const quotes = ["React is cool!", "React is awesome :)"];
+import styles from "./Post.module.css";
 
-function Post() {
-  const chosenQuote = Math.random() > 0.5 ? quotes[0] : quotes[1];
+function Post({ author, body }) {
   return (
     <>
-      <h1>Post Test</h1>
-      <h2>{chosenQuote}</h2>
+      <div className={styles.postContainer}>
+        <p className={styles.author}>{author}</p>
+        <p className={styles.post}>{body}</p>
+      </div>
     </>
   );
 }

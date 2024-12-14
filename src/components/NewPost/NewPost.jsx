@@ -1,24 +1,54 @@
+import { useState } from "react";
 import styles from "./NewPost.module.css";
-function NewPost(props) {
+function NewPost({ onCancel }) {
+  const [enteredBody, setEnteredBody] = useState("");
+  const [enteredAuthor, setEnteredAuthor] = useState("");
+
+  function bodyDataHandler(event) {
+    setEnteredBody(event.target.value);
+    console.log(enteredBody);
+  }
+  function authorDataHandler(event) {
+    setEnteredAuthor(event.target.value);
+    console.log(enteredAuthor);
+  }
+  function submitHandler(event) {
+    event.preventDefault();
+    const data = {
+      author: enteredAuthor,
+      body: enteredBody,
+    };
+
+    console.log(data);
+    onCancel();
+  }
+
   return (
     <>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={submitHandler}>
         <p className={styles.formSection}>
           <label htmlFor="body">Post</label>
           <textarea
             id="body"
             required
             rows={3}
-            onChange={props.onBodyDataChange}
+            onChange={bodyDataHandler}
           ></textarea>
         </p>
         <p className={styles.formSection}>
           <label htmlFor="author">Name</label>
-          <input
-            id="author"
-            required
-            onChange={props.onAuthorDataChange}
-          ></input>
+          <input id="author" required onChange={authorDataHandler}></input>
+        </p>
+        <p className={styles.actions}>
+          <button
+            type="button"
+            onClick={onCancel}
+            className={styles.actionsButtonCancel}
+          >
+            Cancel
+          </button>
+          <button className={styles.actionsButtonSubmit}>Submit</button>{" "}
+          {/* type="Submit" is set as a default */}
         </p>
       </form>
     </>

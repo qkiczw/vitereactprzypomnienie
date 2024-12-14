@@ -34,3 +34,16 @@
   justify-content: center;
   align-items: center;
 }
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.actionsButtonCancel {
+  background-color: rgb(29, 79, 216);
+  border: none;
+}
+.actionsButtonSubmit {
+  background-color: rgb(105, 180, 105);
+}

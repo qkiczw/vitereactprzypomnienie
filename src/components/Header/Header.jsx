@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 
 import { MdPostAdd, MdMessage } from "react-icons/md";
-function Header() {
+function Header({ showCreatePostModal }) {
   return (
     <header className={styles.header}>
       <h1 className={styles.logo}>
@@ -9,7 +9,7 @@ function Header() {
         React Poseter
       </h1>
       <p>
-        <button className={styles.button}>
+        <button className={styles.button} onClick={showCreatePostModal}>
           <MdPostAdd size={18} />
           New Post
         </button>

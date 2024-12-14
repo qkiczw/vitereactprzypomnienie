@@ -6,14 +6,9 @@ import Modal from "../Modal/Modal";
 
 import styles from "./PostsList.module.css";
 
-function PostsList() {
-  const [modalIsVisible, setModalIsVisible] = useState(true);
+function PostsList({ isPosting, onStopPosting }) {
   const [enteredBody, setEnteredBody] = useState("");
   const [enteredAuthor, setEnteredAuthor] = useState("");
-
-  function hideModalHandler() {
-    setModalIsVisible(false);
-  }
 
   function bodyDataHandler(event) {
     setEnteredBody(event.target.value);
@@ -26,8 +21,8 @@ function PostsList() {
 
   return (
     <>
-      {modalIsVisible && ( // If modalIsVisible is true then the Mobile componenet will be rendered
-        <Modal onClose={hideModalHandler}>
+      {isPosting && ( // If modalIsVisible is true then the Mobile componenet will be rendered
+        <Modal onClose={onStopPosting}>
           <NewPost
             onBodyDataChange={bodyDataHandler}
             onAuthorDataChange={authorDataHandler}

@@ -8,13 +8,15 @@ import styles from "./PostsList.module.css";
 
 function PostsList({ isPosting, onStopPosting }) {
   const [postsList, setPosts] = useState([]);
+  const [isFetchting, setIsFetching] = useState(false);
 
   useEffect(() => {
     async function fetchPost() {
+      setIsFetching(true);
       const response = await fetch("http://localhost:8080/posts");
       const resData = await response.json();
-      console.log(resData);
       setPosts(resData.posts);
+      setIsFetching(false);
     }
 
     fetchPost();
@@ -39,17 +41,22 @@ function PostsList({ isPosting, onStopPosting }) {
           <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
         </Modal>
       )}
-      {postsList.length > 0 && (
+      {!isFetchting && postsList.length > 0 && (
         <ul className={styles.postsList}>
           {postsList.map((post, index) => (
             <Post key={index} author={post.author} body={post.body} />
           ))}
         </ul>
       )}
-      {postsList.length === 0 && (
+      {!isFetchting && postsList.length === 0 && (
         <div style={{ textAlign: "center", color: "white" }}>
           <h2>There are no post yet.</h2>
           <p>Start adding something</p>
+        </div>
+      )}
+      {isFetchting && (
+        <div style={{ textAlign: "center", color: "white" }}>
+          <h2>Loading posts...</h2>
         </div>
       )}
     </>
